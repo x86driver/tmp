@@ -1,0 +1,19 @@
+[bits 64]
+	mov eax, 0x12345678
+	mov ecx, 0x12345678
+	mov edx, 0x12345678
+	mov ebx, 0x12345678
+	mov esp, 0x12345678
+	mov ebp, 0x12345678
+	mov esi, 0x12345678
+	mov edi, 0x12345678
+	mov r8d, 0x12345678
+	mov r9d, 0x12345678
+	mov r10d, 0x12345678
+	mov r11d, 0x12345678
+	mov r12d, 0x12345678
+	mov r13d, 0x12345678
+	mov r14d, 0x12345678
+	mov r15d, 0x12345678
+
+
