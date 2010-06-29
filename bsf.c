@@ -32,7 +32,7 @@ inline uint32_t alloc()
 	return ret;
 }
 
-int main()
+int main2()
 {
 	int i;
 	for (i = 0; i < 32; ++i) {
@@ -43,7 +43,7 @@ int main()
 	return 0;
 }
 
-int main2()
+int main()
 {
 	srand(time(0));
 	int i;
@@ -58,7 +58,7 @@ int main2()
 		if (regmap[opdst] == 0) {
 			regmap[opdst] = regtbl[alloc()];
 		}
-		printf("mov r%d, r%d\t; r%d => %d\n", opdst, oprm, opdst, 10);//wrong
+		printf("mov r%d, r%d\t; r%d => 0x%x\n", opdst, oprm, opdst, regmap[opdst]);//wrong
 
 	}
 	return 0;
