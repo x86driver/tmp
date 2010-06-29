@@ -1,4 +1,4 @@
-TARGET = notify notify2 ass1
+TARGET = notify notify2 ass1 bsf
 
 all:$(TARGET)
 
@@ -10,6 +10,9 @@ notify2:notify2.c
 
 ass1:ass1.c
 	arm-none-linux-gnueabi-gcc -Os -o ass1 ass1.c
+
+bsf:bsf.c
+	gcc -Wall -O2 -o $@ $<
 
 clean:
 	rm -rf $(TARGET)
