@@ -1,14 +1,17 @@
 #include <stdio.h>
 
-void __attribute__((noinline)) func()
-{
-//	__asm__("movl $0, %esp");
-}
+struct item {
+	int count;
+};
+
+struct A {
+	struct item it;
+};
+
+struct A a = {.it = {.count = 10}};
 
 int main()
 {
-	int a = 10;
-	func();
-	printf("a = %d\n", a);
+	printf("%d\n", a.it.count);
 	return 0;
 }
