@@ -20,7 +20,9 @@
 #define R14 0x041be
 #define R15 0x041bf
 
-uint32_t map = 0xffffffff;
+#define REGNUM 16
+
+uint32_t map = 0xff;
 
 inline uint32_t alloc()
 {
@@ -48,8 +50,8 @@ int main2()
 	srand(time(0));
 	int i;
 
-        static unsigned int regmap[16] = {0};
-        uint32_t regtbl[16] = {EAX, ECX, EDX, ESI, EDI, R8, R9, R10,
+        static unsigned int regmap[REGNUM] = {0};
+        uint32_t regtbl[REGNUM-1] = {EAX, ECX, EDX, ESI, EDI, R8, R9, R10,
                         R11, EBX, EBP, ESP, R13, R14, R15}; /* No R12 */
 
 	for (i = 0; i < 16; ++i) {
