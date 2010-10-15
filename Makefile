@@ -1,4 +1,4 @@
-TARGET = notify notify2 ass1 bsf
+TARGET = notify notify2 ass1 bsf itoa
 
 all:$(TARGET)
 
@@ -13,6 +13,9 @@ ass1:ass1.c
 
 bsf:bsf.c
 	gcc -Wall -O2 -o $@ $<
+
+itoa:itoa.c
+	gcc -Wall -o $@ $< -g
 
 clean:
 	rm -rf $(TARGET)
