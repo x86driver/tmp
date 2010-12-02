@@ -16,3 +16,6 @@ runjava
 fsm
 state
 *.o
+class
+sleep
+
