@@ -17,8 +17,8 @@ bsf:bsf.c
 itoa:itoa.c
 	gcc -Wall -o $@ $< -g
 
-fsm:fsm.cpp
-	g++ -Wall -o $@ $< -g
+fsm:fsm.cpp fsm.h state.h state.cpp
+	g++ -Wall -o $@ $< -g state.cpp
 
 clean:
 	rm -rf $(TARGET)
