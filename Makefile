@@ -1,4 +1,4 @@
-TARGET = notify notify2 ass1 bsf itoa fsm
+TARGET = notify notify2 ass1 bsf itoa fsm jump
 
 all:$(TARGET)
 
@@ -19,6 +19,9 @@ itoa:itoa.c
 
 fsm:fsm.cpp fsm.h state.h state.cpp
 	g++ -Wall -o $@ $< -g state.cpp
+
+jump:jump.c
+	gcc -Wall -o $@ $<
 
 clean:
 	rm -rf $(TARGET)
