@@ -17,3 +17,5 @@ fsm
 state
 *.o
 jump
+class
+sleep
