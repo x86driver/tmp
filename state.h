@@ -3,17 +3,19 @@
 
 #include "fsm.h"
 
+class LibraryThread;
+
 class State {
 public:
-	virtual void connect() = 0;
+        virtual void connect() = 0;
 	virtual void parse() = 0;
 	virtual void close() = 0;
 	virtual void normal() = 0;
+public:
+        LibraryThread *libthread;
 };
 
 class InitState : public State {
-private:
-	class LibraryThread *libthread;
 public:
 	InitState(LibraryThread *libthread);
 	virtual void connect();
@@ -29,8 +31,15 @@ public:
 	virtual void parse();
 	virtual void close();
 	virtual void normal();
-private:
-	LibraryThread *libthread;
+};
+
+class EndState : public State {
+public:
+	EndState(LibraryThread *libthread);
+	virtual void connect();
+        virtual void parse();
+        virtual void close();
+        virtual void normal();
 };
 
 #endif

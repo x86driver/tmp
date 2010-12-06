@@ -2,8 +2,9 @@
 #include "fsm.h"
 #include "state.h"
 
-InitState::InitState(LibraryThread *libthread) : libthread(libthread)
+InitState::InitState(LibraryThread *libthread)
 {
+        this->libthread = libthread;
 }
 
 void InitState::connect()
@@ -27,8 +28,9 @@ void InitState::normal()
 	printf("Can't do normal thing while connect state\n");
 }
 
-ReadState::ReadState(LibraryThread *libthread) : libthread(libthread)
+ReadState::ReadState(LibraryThread *libthread)
 {
+        this->libthread = libthread;
 }
 
 void ReadState::connect()
