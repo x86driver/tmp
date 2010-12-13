@@ -1,4 +1,4 @@
-TARGET = notify notify2 ass1 bsf itoa fsm jump clock
+TARGET = notify notify2 ass1 bsf itoa fsm jump clock ptr
 
 all:$(TARGET)
 
@@ -25,6 +25,9 @@ jump:jump.c
 
 clock:clock.c
 	gcc -Wall -o $@ $< -lrt
+
+ptr:ptr.cpp
+	g++ -Wall -o $@ $<
 
 clean:
 	rm -rf $(TARGET)
