@@ -22,9 +22,9 @@ mem_fun1_t<S,T,A> mem_fun(S (T::*f)(A)) {
 }
 
 template <typename A, typename Function>
-void Execute(A a, Function f)
+void Execute(A *a, Function f, int n)
 {
-        f(*a);
+        f(a, n);
 }
 
 class TPolicy {
@@ -34,22 +34,22 @@ public:
         }
 };
 
-//template <typename T = TPolicy>
-//class Daemon : public T {
-class Daemon {
+template <typename T = TPolicy>
+class Daemon : public T {
+//class Daemon {
 public:
         void go(int a) {
-//                T::show(a);
-                printf("%d\n", a);
+                T::show(a);
+//                printf("%d\n", a);
         }
 };
 
 int main()
 {
-        Daemon *d;
-        d = new Daemon;
-        Execute(d, mem_fun(&Daemon::go));
-        delete d;
+        Daemon<> d;
+//        d = new Daemon<>;
+        Execute(&d, mem_fun(&Daemon<>::go), 10);
+//        delete d;
         return 0;
 }
 
