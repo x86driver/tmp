@@ -2,7 +2,7 @@
 
 int main()
 {
-    int numbers[] = {1, 3, 3, 4, 4, 4, 4, 4};
+    int numbers[] = {1, 2, 2, 2, 3, 3, 4, 4, 4, 5};
     int total = sizeof(numbers) / sizeof(numbers[0]);
     int sum = 0;
 
@@ -11,6 +11,8 @@ int main()
     i = 0;
     while (i < total) {
         int comp = numbers[i];
+        sum = numbers[i];
+        ++i;
         for (; i < total; ++i) {
             int curr = numbers[i];
             if (comp == curr) {
