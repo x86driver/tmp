@@ -21,3 +21,4 @@ class
 sleep
 clock
 ptr
+count
