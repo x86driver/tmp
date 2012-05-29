@@ -22,8 +22,8 @@ void make_record(int day, int time, int meter)
 
 void list_day(int day)
 {
-    printf("=== Day %d ===\n", day+1);
-    auto it = days[day].begin();
+    printf("\n=== Day %d ===\n", day+1);
+    vector<Record>::iterator it = days[day].begin();
     for (; it != days[day].end(); ++it) {
         printf("Time: %02d, meter: %d\n", it->time, it->meter);
     }
@@ -32,11 +32,32 @@ void list_day(int day)
 void analysis()
 {
     int day = 0;
-    for (uint32_t i = 1; i < days[day].size(); ++i) {
-        Record prev = days[day][i-1];
-        Record curr = days[day][i];
+    uint32_t i;
+
+    Record prev, curr;
+
+    for (i = 1; i < days[day].size(); ++i) {
+        prev = days[day][i-1];
+        curr = days[day][i];
         printf("ave time: %d, avg meter: %f\n",
                (curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
+    }
+
+    printf("\n\n=====\n\n");
+
+    day = 1;
+    prev = days[day-1].back();
+    curr = days[day][0];
+    double ave_time = (24+curr.time+prev.time)/2.0;
+    if (ave_time > 24)
+	ave_time -= 24;
+    printf("ave time: %.1f, avg meter: %f\n",
+	   ave_time, (double)(curr.meter-prev.meter)/(ave_time*60));
+    for (i = 1; i < days[day].size(); ++i) {
+	prev = days[day][i-1];
+	curr = days[day][i];
+	printf("ave time: %d, avg meter: %f\n",
+	       (curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
     }
 }
 
@@ -47,6 +68,15 @@ int main()
     make_record(0, 19, 20);
     make_record(0, 22, 25);
     list_day(0);
+
+    make_record(1, 7, 30);
+    make_record(1, 9, 35);
+    make_record(1, 13, 45);
+    make_record(1, 20, 60);
+    make_record(1, 23, 65);
+    list_day(1);
+
+    printf("\n\n");
 
     analysis();
 

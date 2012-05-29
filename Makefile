@@ -33,7 +33,7 @@ count:count.c
 	gcc -Wall -o $@ $< -g
 
 analysis:analysis.cpp
-	g++ -Wall -std=c++0x -o $@ $< -g
+	g++ -Wall -o $@ $< -g
 
 clean:
 	rm -rf $(TARGET)
