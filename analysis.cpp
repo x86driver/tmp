@@ -49,11 +49,21 @@ void analysis()
 {
     int day = 0;
     double ave_time;
+    double last_point;
 
     Record prev, curr;
+    Record next;
 
     printf("\nAnalysis Day %d\n\n", day+1);
     analysize_1day(day);
+
+    curr = days[day].back();
+    next = days[day+1].front();
+    double a = (double)(24 - curr.time) / (24 - curr.time + next.time);
+    double b = (double)(next.meter - curr.meter);
+    double c = (double)((24 - curr.time) * 60.0);
+    last_point = a * b / c;
+    printf("last:     %.1f, avg meter: %f\n", 24.0, last_point);
 
     for (day = 1; day < 3; ++day) {
         printf("\nAnalysis Day %d\n\n", day+1);
