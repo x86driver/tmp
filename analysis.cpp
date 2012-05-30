@@ -10,7 +10,7 @@ struct Record {
     int meter;
 };
 
-vector<Record> days[2];
+vector<Record> days[3];
 
 void make_record(int day, int time, int meter)
 {
@@ -36,6 +36,7 @@ void analysis()
 
     Record prev, curr;
 
+    printf("\nAnalysis Day %d\n\n", day+1);
     for (i = 1; i < days[day].size(); ++i) {
         prev = days[day][i-1];
         curr = days[day][i];
@@ -43,21 +44,22 @@ void analysis()
                (curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
     }
 
-    printf("\n\n=====\n\n");
+    for (day = 1; day < 3; ++day) {
+        printf("\nAnalysis Day %d\n\n", day+1);
 
-    day = 1;
-    prev = days[day-1].back();
-    curr = days[day][0];
-    double ave_time = (24+curr.time+prev.time)/2.0;
-    if (ave_time > 24)
-	ave_time -= 24;
-    printf("ave time: %.1f, avg meter: %f\n",
-	   ave_time, (double)(curr.meter-prev.meter)/(ave_time*60));
-    for (i = 1; i < days[day].size(); ++i) {
-	prev = days[day][i-1];
-	curr = days[day][i];
-	printf("ave time: %d, avg meter: %f\n",
-	       (curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
+        prev = days[day-1].back();
+        curr = days[day][0];
+        double ave_time = (24+curr.time+prev.time)/2.0;
+        if (ave_time > 24)
+            ave_time -= 24;
+        printf("ave time: %.1f, avg meter: %f\n",
+               ave_time, (double)(curr.meter-prev.meter)/(ave_time*60));
+        for (i = 1; i < days[day].size(); ++i) {
+	    prev = days[day][i-1];
+	    curr = days[day][i];
+	    printf("ave time: %.1f, avg meter: %f\n",
+                   (double)(curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
+        }
     }
 }
 
@@ -75,6 +77,11 @@ int main()
     make_record(1, 20, 60);
     make_record(1, 23, 65);
     list_day(1);
+
+    make_record(2, 4, 70);
+    make_record(2, 17, 80);
+    make_record(2, 23, 95);
+    list_day(2);
 
     printf("\n\n");
 
