@@ -29,37 +29,43 @@ void list_day(int day)
     }
 }
 
+void show_avg(Record &prev, Record &curr)
+{
+    printf("ave time: %.1f, avg meter: %f\n",
+           (double)(curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
+}
+
+void analysize_1day(int day)
+{
+    Record prev, curr;
+    for (uint32_t i = 1; i < days[day].size(); ++i) {
+        prev = days[day][i-1];
+        curr = days[day][i];
+        show_avg(prev, curr);
+    }
+}
+
 void analysis()
 {
     int day = 0;
-    uint32_t i;
+    double ave_time;
 
     Record prev, curr;
 
     printf("\nAnalysis Day %d\n\n", day+1);
-    for (i = 1; i < days[day].size(); ++i) {
-        prev = days[day][i-1];
-        curr = days[day][i];
-        printf("ave time: %d, avg meter: %f\n",
-               (curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
-    }
+    analysize_1day(day);
 
     for (day = 1; day < 3; ++day) {
         printf("\nAnalysis Day %d\n\n", day+1);
 
         prev = days[day-1].back();
         curr = days[day][0];
-        double ave_time = (24+curr.time+prev.time)/2.0;
+        ave_time = (24+curr.time+prev.time)/2.0;
         if (ave_time > 24)
             ave_time -= 24;
         printf("ave time: %.1f, avg meter: %f\n",
                ave_time, (double)(curr.meter-prev.meter)/(ave_time*60));
-        for (i = 1; i < days[day].size(); ++i) {
-	    prev = days[day][i-1];
-	    curr = days[day][i];
-	    printf("ave time: %.1f, avg meter: %f\n",
-                   (double)(curr.time+prev.time)/2, (double)(curr.meter-prev.meter)/((curr.time-prev.time)*60));
-        }
+        analysize_1day(day);
     }
 }
 
